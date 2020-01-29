@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="exampleInputEmail">Email address</label>
+        <input type="email" class="form-control" name="email" formControlName="email"
+               id="exampleInputEmail">
+      </div>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" name="firstName" formControlName="firstName"
+               id="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" name="lastName" formControlName="lastName"
+               id="lastName">
+      </div>
+
+      <fieldset formArrayName="additionalEmails">
+        <legend>Email aliases</legend>
+
+        <div class="input-group"  *ngFor="let email of additionalEmails.controls; let i = index">
+          <input type="email" class="form-control" [name]="'email' + i" [formControlName]="i"
+                 [id]="'email' + i">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="deleteEmail(i)" type="button">X</button>
+          </div>
+        </div>
+
+        <button type="button" (click)="addEmail()" class="btn btn-link">Add email</button>
+      </fieldset>
+
+
+      <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+    </form>
+
+    <p>Validation status: {{ form.status }}</p>
+  </div>
+</div>
