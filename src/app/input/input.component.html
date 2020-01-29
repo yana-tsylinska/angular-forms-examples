@@ -1,0 +1,8 @@
+<div [ngClass]="{'disabled': disabled }">
+  <input [type]="type"
+         class="form-control input_field number-field_hidden-arrows"
+         (ngModelChange)="selectValue($event)"
+         [disabled]="disabled"
+         [name]="name"
+         [ngModel]="selectedValue">
+</div>

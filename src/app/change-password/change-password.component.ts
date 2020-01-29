@@ -14,35 +14,35 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      email: new FormControl(null, Validators.email),
-      currentPass: new FormControl(),
-      newPass: new FormControl(),
-      newPass2: new FormControl()
-    });
+      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
+      currentPass: new FormControl(null, Validators.required),
+      newPass: new FormControl(null, Validators.required),
+      newPass2: new FormControl(null, Validators.required),
+    }, this.wrongPassword());
   }
 
   onSubmit() {
-    // if (this.form.invalid) {
-    //   console.error('invalid');
-    //
-    //   return;
-    // }
-    //
-    // console.dir(this.form.value);
+    if (this.form.invalid) {
+      console.error('invalid');
+
+      return;
+    }
+
+    console.dir(this.form);
   }
 
 
-  // wrongPassword(): ValidatorFn {
-  //   return (control: AbstractControl): {[key: string]: any} => {
-  //     const values = control.value;
-  //
-  //     return values.newPass === values.newPass2 ? null : {confirmPassword: {name}};
-  //   };
-  // }
+  wrongPassword(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const values = control.value;
 
-  // valueChangesSetup() {
-  //   this.form.get('email').valueChanges.subscribe((value) => {
-  //     console.warn(value);
-  //   });
-  // }
+      return values.newPass === values.newPass2 ? null : {confirmPassword: {name}};
+    };
+  }
+
+  valueChangesSetup() {
+    this.form.get('email').valueChanges.subscribe((value) => {
+      console.warn(value);
+    });
+  }
 }

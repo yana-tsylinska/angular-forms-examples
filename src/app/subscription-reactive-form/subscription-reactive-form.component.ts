@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +13,17 @@ export class SubscriptionReactiveFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.email = new FormControl('example@gmail.com', Validators.required);
+    this.email = new FormControl('example@gmail.com',
+      Validators.compose([Validators.email, Validators.minLength(2)]));
+
+    console.dir(this.email);
+  }
+
+  onSubmit() {
+    if (this.email.invalid) {
+      return;
+    }
+
+    console.log(this.email.value);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-settings',
@@ -14,7 +14,7 @@ export class ProfileSettingsComponent implements OnInit {
     return this.form.get('additionalEmails') as FormArray;
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -23,6 +23,13 @@ export class ProfileSettingsComponent implements OnInit {
       lastName: new FormControl(),
       additionalEmails: new FormArray([])
     });
+
+    // this.form = this.fb.group({
+    //   email: ['', Validators.email],
+    //   firstName: '',
+    //   lastName: '',
+    //   additionalEmails: this.fb.array([])
+    // });
   }
 
   addEmail() {

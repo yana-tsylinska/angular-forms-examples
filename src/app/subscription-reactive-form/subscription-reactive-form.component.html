@@ -5,12 +5,16 @@
         <label for="exampleInputEmail1">Email address</label>
         <input type="email" class="form-control" name="email" [formControl]="email"
                id="exampleInputEmail1" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp"
+               class="form-text text-muted">We'll never share your email with anyone else.</small>
+
+        <small *ngIf="email.invalid && email.touched"
+               class="form-text text-error">Here we have error.</small>
       </div>
 
       <button type="submit" [disabled]="email.invalid" class="btn btn-primary">Submit</button>
     </form>
 
-    <p>Result: {{email}}</p>
+    <p>Result: {{ email.errors | json }}</p>
   </div>
 </div>

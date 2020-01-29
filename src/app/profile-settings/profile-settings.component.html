@@ -20,7 +20,7 @@
       <fieldset formArrayName="additionalEmails">
         <legend>Email aliases</legend>
 
-        <div class="input-group"  *ngFor="let email of additionalEmails.controls; let i = index">
+        <div class="input-group" *ngFor="let email of additionalEmails.controls; let i = index">
           <input type="email" class="form-control" [name]="'email' + i" [formControlName]="i"
                  [id]="'email' + i">
           <div class="input-group-append">
