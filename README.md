@@ -1,6 +1,6 @@
 # FormsExample
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+Few basic examples of using Angular forms
 
 ## Development server
 
